@@ -1,0 +1,51 @@
+{
+  "name": "bnb-sniper-bundler-volume-bot",
+  "version": "1.0.0",
+  "description": "Professional trading bot for BNB Smart Chain with bloXroute integration",
+  "main": "index.js",
+  "keywords": [
+    "bnb",
+    "bsc",
+    "trading-bot",
+    "pancakeswap",
+    "sniper",
+    "bundler",
+    "bloxroute",
+    "defi"
+  ],
+  "author": "soljesty",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rustjesty/bnb-sniper-bundler-volume-bot"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "scripts": {
+    "start": "node scripts/bloxroute.js",
+    "dev": "node scripts/bloxroute.js",
+    "sn": "npx hardhat node --network hardhat",
+    "test": "npx hardhat test --network localhost",
+    "t": "npx hardhat test --network localhost",
+    "compile": "npx hardhat compile",
+    "clean": "npx hardhat clean",
+    "deploy": "npx hardhat run scripts/deploy.js"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@uniswap/v3-core": "^1.0.1",
+    "@uniswap/v3-sdk": "^3.10.2",
+    "hardhat": "^2.19.5"
+  },
+  "dependencies": {
+    "@ethersproject/abi": "^5.7.0",
+    "@openzeppelin/contracts": "^4.9.6",
+    "@uniswap/sdk-core": "^4.0.7",
+    "axios": "^1.6.2",
+    "dotenv": "^16.4.7",
+    "ethers": "^6.9.0",
+    "jsbi": "^4.3.0"
+  }
+}
