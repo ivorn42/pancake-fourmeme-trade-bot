@@ -1,4 +1,4 @@
-# BNB Chain Trading Bot (Sniper, Bundler, Volume Bots in pancake swap and four.meme)
+# BNB Chain Trading Bot
 
 <div align="center">
 
@@ -14,31 +14,39 @@
 
 ---
 
-## Overview
+## Table of Contents
 
-A sophisticated trading bot infrastructure designed for BNB Smart Chain, enabling automated token deployment, liquidity pool creation, and advanced trading strategies. Built with enterprise-grade tools and optimized for performance on PancakeSwap V3 and Four.meme platforms.
-
-### Key Features
-
-- **🚀 Token Deployment**: Automated ERC20 token creation with customizable parameters
-- **💧 Liquidity Management**: Seamless pool creation and liquidity provisioning on PancakeSwap V3
-- **⚡ Transaction Bundling**: bloXroute integration for MEV protection and atomic operations
-- **🎯 Trading Strategies**: Support for sniping, bundling, and volume generation
-- **🔒 Security First**: Built with OpenZeppelin contracts and comprehensive testing
-- **🧪 Fork Testing**: BSC mainnet forking for realistic testing environment
+- [Overview](#overview)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Workflow](#workflow)
+- [Security](#security-considerations)
+- [Disclaimer](#disclaimer)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support--contact)
 
 ---
 
-## Architecture
+## Overview
 
-This bot leverages a modular architecture combining:
+A sophisticated trading bot infrastructure for BNB Smart Chain, enabling automated token deployment, liquidity pool creation, and advanced trading strategies. Optimized for PancakeSwap V3 and Four.meme platforms with MEV protection via bloXroute.
 
-- **Smart Contracts**: Solidity-based ERC20 token contracts
-- **Transaction Bundling**: bloXroute API for atomic multi-transaction execution
-- **Liquidity Protocols**: Uniswap V3 SDK for PancakeSwap V3 interaction
-- **Development Framework**: Hardhat for compilation, testing, and deployment
+## Features
 
-### Technology Stack
+- **🚀 Token Deployment** - Automated ERC20 token creation with customizable parameters
+- **💧 Liquidity Management** - Seamless pool creation and liquidity provisioning on PancakeSwap V3
+- **⚡ Transaction Bundling** - bloXroute integration for MEV protection and atomic operations
+- **🎯 Trading Strategies** - Support for sniping, bundling, and volume generation
+- **🔒 Security First** - Built with OpenZeppelin contracts and comprehensive testing
+- **🧪 Fork Testing** - BSC mainnet forking for realistic testing environment
+
+## Technology Stack
 
 | Component | Technology |
 |-----------|-----------|
@@ -52,26 +60,13 @@ This bot leverages a modular architecture combining:
 
 ---
 
-## Support & Contact
-
-For questions, support, or collaboration inquiries:
-
-**Telegram**: [@ivorn42](https://t.me/ivorn42)
-
-
----
-
 ## Prerequisites
 
-Before running this project, ensure you have:
-
-- **Node.js**: v16.x or higher
-- **npm**: v8.x or higher
-- **RPC Access**: QuickNode or similar BSC RPC endpoint
-- **bloXroute Account**: API credentials for transaction bundling
-- **Private Key**: Funded wallet on BNB Smart Chain
-
----
+- **Node.js** v16.x or higher
+- **npm** v8.x or higher
+- **RPC Access** - QuickNode or similar BSC RPC endpoint
+- **bloXroute Account** - API credentials for transaction bundling
+- **Funded Wallet** - Private key with BNB on BNB Smart Chain
 
 ## Installation
 
@@ -94,17 +89,11 @@ Before running this project, ensure you have:
    AUTHORIZATION_HEADER=your_bloxroute_auth_token
    ```
 
-4. **Update RPC endpoints** (if needed)
-   
-   Edit `hardhat.config.js` and `constants/index.js` with your RPC URLs
-
----
-
 ## Configuration
 
 ### Network Configuration
 
-The project is configured to fork BNB Smart Chain mainnet for testing. Update `hardhat.config.js`:
+Update `hardhat.config.js` with your BSC RPC URL:
 
 ```javascript
 networks: {
@@ -125,32 +114,22 @@ export const BLOXROUTE_AUTHORIZATION_HEADER = 'your_auth_token'
 export const BLOXROUTE_ENDPOINT = 'https://api.blxrbdn.com'
 ```
 
----
-
 ## Usage
 
-### Development Server
+### Quick Start
 
-Start a local Hardhat node with BSC fork:
 ```bash
+# Start local Hardhat node with BSC fork
 npm run sn
-```
 
-### Run Tests
-
-Execute test suite on local network:
-```bash
+# Run tests
 npm run t
-```
 
-### Deploy Bot
-
-Run the main bot script:
-```bash
+# Deploy bot
 npm run dev
 ```
 
-### Manual Commands
+### Available Commands
 
 ```bash
 # Compile contracts
@@ -165,8 +144,6 @@ REPORT_GAS=true npx hardhat test
 # Get help
 npx hardhat help
 ```
-
----
 
 ## Project Structure
 
@@ -186,10 +163,22 @@ bnb-sniper-bundler-volume-bot/
 ├── cache/                   # Hardhat cache
 ├── hardhat.config.js        # Hardhat configuration
 ├── package.json             # Dependencies
-└── README.md               # Documentation
+└── README.md                # Documentation
 ```
 
----
+## Workflow
+
+The bot executes the following operations atomically via bloXroute:
+
+1. Deploy custom ERC20 token
+2. Approve token for NFPM (Non-Fungible Position Manager)
+3. Approve WBNB for NFPM
+4. Create liquidity pool on PancakeSwap V3
+5. Initialize pool with pricing
+6. Add liquidity to pool
+7. Execute buy transaction
+
+All operations are bundled to ensure atomicity and MEV protection.
 
 ## Security Considerations
 
@@ -202,27 +191,9 @@ bnb-sniper-bundler-volume-bot/
 5. **Monitor gas prices** to avoid overpaying for transactions
 6. **Understand MEV risks** when executing atomic bundles
 
----
-
-## Workflow
-
-The bot performs the following operations in an atomic bundle:
-
-1. Deploy custom ERC20 token
-2. Approve token for NFPM (Non-Fungible Position Manager)
-3. Approve WBNB for NFPM
-4. Create liquidity pool on PancakeSwap V3
-5. Initialize pool with pricing
-6. Add liquidity to pool
-7. Execute buy transaction
-
-All operations are bundled via bloXroute to ensure atomicity and MEV protection.
-
----
-
 ## Disclaimer
 
-This software is provided for **educational and research purposes only**. 
+This software is provided for **educational and research purposes only**.
 
 - Trading cryptocurrencies involves substantial risk of loss
 - The developers assume no responsibility for financial losses
@@ -230,8 +201,6 @@ This software is provided for **educational and research purposes only**.
 - Use at your own risk
 
 **By using this software, you acknowledge that you understand the risks involved in cryptocurrency trading.**
-
----
 
 ## Contributing
 
@@ -243,14 +212,9 @@ Contributions are welcome! Please follow these guidelines:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
----
-
 ## License
 
 This project is licensed under the ISC License.
-
-
----
 
 ## Acknowledgments
 
@@ -259,6 +223,12 @@ This project is licensed under the ISC License.
 - [Uniswap V3](https://uniswap.org/) - DEX protocol
 - [bloXroute](https://bloxroute.com/) - Transaction bundling infrastructure
 - [QuickNode](https://quicknode.com/) - Blockchain infrastructure
+
+## Support & Contact
+
+For questions, support, or collaboration inquiries:
+
+**Telegram**: [@ivorn42](https://t.me/ivorn42)
 
 ---
 
